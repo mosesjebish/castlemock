@@ -95,15 +95,15 @@ public class OpenApiRestDefinitionConverterTest {
         Assert.assertNull(updatePetRestMethod.getResourceId());
 
         if (generatedResponse) {
-            Assert.assertEquals(4, updatePetRestMethod.getMockResponses().size());
+            Assert.assertEquals(5, updatePetRestMethod.getMockResponses().size());
 
-            // 200
+            // 200 (application/json)
             RestMockResponse response = updatePetRestMethod.getMockResponses().stream()
-                    .filter(method -> method.getName().equals("Successful operation"))
+                    .filter(method -> method.getName().equals("Successful operation (application/json)"))
                     .findFirst()
                     .get();
 
-            Assert.assertEquals("Successful operation", response.getName());
+            Assert.assertEquals("Successful operation (application/json)", response.getName());
 
             Assert.assertEquals(Integer.valueOf(200), response.getHttpStatusCode());
             Assert.assertEquals(RestMockResponseStatus.ENABLED, response.getStatus());
@@ -112,6 +112,20 @@ public class OpenApiRestDefinitionConverterTest {
             Assert.assertNull(response.getId());
             Assert.assertNull(response.getMethodId());
 
+            // 200 (application/xml)
+            RestMockResponse xmlResponse = updatePetRestMethod.getMockResponses().stream()
+                    .filter(method -> method.getName().equals("Successful operation (application/xml)"))
+                    .findFirst()
+                    .get();
+
+            Assert.assertEquals("Successful operation (application/xml)", xmlResponse.getName());
+
+            Assert.assertEquals(Integer.valueOf(200), xmlResponse.getHttpStatusCode());
+            Assert.assertEquals(RestMockResponseStatus.ENABLED, xmlResponse.getStatus());
+            Assert.assertTrue(xmlResponse.isUsingExpressions());
+            Assert.assertTrue(xmlResponse.getContentEncodings().isEmpty());
+            Assert.assertNull(xmlResponse.getId());
+            Assert.assertNull(xmlResponse.getMethodId());
 
             // 400
             RestMockResponse invalidMockResponse = updatePetRestMethod.getMockResponses().stream()
@@ -189,15 +203,15 @@ public class OpenApiRestDefinitionConverterTest {
         Assert.assertNull(addPetRestMethod.getResourceId());
 
         if (generatedResponse) {
-            Assert.assertEquals(2, addPetRestMethod.getMockResponses().size());
+            Assert.assertEquals(3, addPetRestMethod.getMockResponses().size());
 
-            // 200
+            // 200 (application/json)
             RestMockResponse response = addPetRestMethod.getMockResponses().stream()
-                    .filter(method -> method.getName().equals("Successful operation"))
+                    .filter(method -> method.getName().equals("Successful operation (application/json)"))
                     .findFirst()
                     .get();
 
-            Assert.assertEquals("Successful operation", response.getName());
+            Assert.assertEquals("Successful operation (application/json)", response.getName());
 
             Assert.assertEquals(Integer.valueOf(200), response.getHttpStatusCode());
             Assert.assertEquals(RestMockResponseStatus.ENABLED, response.getStatus());
@@ -205,6 +219,21 @@ public class OpenApiRestDefinitionConverterTest {
             Assert.assertTrue(response.getContentEncodings().isEmpty());
             Assert.assertNull(response.getId());
             Assert.assertNull(response.getMethodId());
+
+            // 200 (application/xml)
+            RestMockResponse xmlResponse = addPetRestMethod.getMockResponses().stream()
+                    .filter(method -> method.getName().equals("Successful operation (application/xml)"))
+                    .findFirst()
+                    .get();
+
+            Assert.assertEquals("Successful operation (application/xml)", xmlResponse.getName());
+
+            Assert.assertEquals(Integer.valueOf(200), xmlResponse.getHttpStatusCode());
+            Assert.assertEquals(RestMockResponseStatus.ENABLED, xmlResponse.getStatus());
+            Assert.assertTrue(xmlResponse.isUsingExpressions());
+            Assert.assertTrue(xmlResponse.getContentEncodings().isEmpty());
+            Assert.assertNull(xmlResponse.getId());
+            Assert.assertNull(xmlResponse.getMethodId());
 
             // 405
             RestMockResponse invalidMockResponse = addPetRestMethod.getMockResponses().stream()
@@ -261,15 +290,15 @@ public class OpenApiRestDefinitionConverterTest {
         Assert.assertNull(getPetByIdMethod.getResourceId());
 
         if (generatedResponse) {
-            Assert.assertEquals(3, getPetByIdMethod.getMockResponses().size());
+            Assert.assertEquals(4, getPetByIdMethod.getMockResponses().size());
 
-            // 200
+            // 200 (application/json)
             RestMockResponse response = getPetByIdMethod.getMockResponses().stream()
-                    .filter(method -> method.getName().equals("successful operation"))
+                    .filter(method -> method.getName().equals("successful operation (application/json)"))
                     .findFirst()
                     .get();
 
-            Assert.assertEquals("successful operation", response.getName());
+            Assert.assertEquals("successful operation (application/json)", response.getName());
 
             Assert.assertEquals(Integer.valueOf(200), response.getHttpStatusCode());
             Assert.assertEquals(RestMockResponseStatus.ENABLED, response.getStatus());
@@ -278,6 +307,20 @@ public class OpenApiRestDefinitionConverterTest {
             Assert.assertNull(response.getId());
             Assert.assertNull(response.getMethodId());
 
+            // 200 (application/xml)
+            RestMockResponse xmlResponse = getPetByIdMethod.getMockResponses().stream()
+                    .filter(method -> method.getName().equals("successful operation (application/xml)"))
+                    .findFirst()
+                    .get();
+
+            Assert.assertEquals("successful operation (application/xml)", xmlResponse.getName());
+
+            Assert.assertEquals(Integer.valueOf(200), xmlResponse.getHttpStatusCode());
+            Assert.assertEquals(RestMockResponseStatus.ENABLED, xmlResponse.getStatus());
+            Assert.assertTrue(xmlResponse.isUsingExpressions());
+            Assert.assertTrue(xmlResponse.getContentEncodings().isEmpty());
+            Assert.assertNull(xmlResponse.getId());
+            Assert.assertNull(xmlResponse.getMethodId());
 
             // 400
             RestMockResponse invalidMockResponse = getPetByIdMethod.getMockResponses().stream()
@@ -409,15 +452,15 @@ public class OpenApiRestDefinitionConverterTest {
         Assert.assertNull(updatePetRestMethod.getResourceId());
 
         if (generatedResponse) {
-            Assert.assertEquals(4, updatePetRestMethod.getMockResponses().size());
+            Assert.assertEquals(5, updatePetRestMethod.getMockResponses().size());
 
-            // 200
+            // 200 (application/json)
             RestMockResponse response = updatePetRestMethod.getMockResponses().stream()
-                    .filter(method -> method.getName().equals("Successful operation"))
+                    .filter(method -> method.getName().equals("Successful operation (application/json)"))
                     .findFirst()
                     .get();
 
-            Assert.assertEquals("Successful operation", response.getName());
+            Assert.assertEquals("Successful operation (application/json)", response.getName());
 
             Assert.assertEquals(Integer.valueOf(200), response.getHttpStatusCode());
             Assert.assertEquals(RestMockResponseStatus.ENABLED, response.getStatus());
@@ -426,6 +469,20 @@ public class OpenApiRestDefinitionConverterTest {
             Assert.assertNull(response.getId());
             Assert.assertNull(response.getMethodId());
 
+            // 200 (application/xml)
+            RestMockResponse xmlResponse = updatePetRestMethod.getMockResponses().stream()
+                    .filter(method -> method.getName().equals("Successful operation (application/xml)"))
+                    .findFirst()
+                    .get();
+
+            Assert.assertEquals("Successful operation (application/xml)", xmlResponse.getName());
+
+            Assert.assertEquals(Integer.valueOf(200), xmlResponse.getHttpStatusCode());
+            Assert.assertEquals(RestMockResponseStatus.ENABLED, xmlResponse.getStatus());
+            Assert.assertTrue(xmlResponse.isUsingExpressions());
+            Assert.assertTrue(xmlResponse.getContentEncodings().isEmpty());
+            Assert.assertNull(xmlResponse.getId());
+            Assert.assertNull(xmlResponse.getMethodId());
 
             // 400
             RestMockResponse invalidMockResponse = updatePetRestMethod.getMockResponses().stream()
@@ -503,15 +560,15 @@ public class OpenApiRestDefinitionConverterTest {
         Assert.assertNull(addPetRestMethod.getResourceId());
 
         if (generatedResponse) {
-            Assert.assertEquals(2, addPetRestMethod.getMockResponses().size());
+            Assert.assertEquals(3, addPetRestMethod.getMockResponses().size());
 
-            // 200
+            // 200 (application/json)
             RestMockResponse response = addPetRestMethod.getMockResponses().stream()
-                    .filter(method -> method.getName().equals("Successful operation"))
+                    .filter(method -> method.getName().equals("Successful operation (application/json)"))
                     .findFirst()
                     .get();
 
-            Assert.assertEquals("Successful operation", response.getName());
+            Assert.assertEquals("Successful operation (application/json)", response.getName());
 
             Assert.assertEquals(Integer.valueOf(200), response.getHttpStatusCode());
             Assert.assertEquals(RestMockResponseStatus.ENABLED, response.getStatus());
@@ -519,6 +576,21 @@ public class OpenApiRestDefinitionConverterTest {
             Assert.assertTrue(response.getContentEncodings().isEmpty());
             Assert.assertNull(response.getId());
             Assert.assertNull(response.getMethodId());
+
+            // 200 (application/xml)
+            RestMockResponse xmlResponse = addPetRestMethod.getMockResponses().stream()
+                    .filter(method -> method.getName().equals("Successful operation (application/xml)"))
+                    .findFirst()
+                    .get();
+
+            Assert.assertEquals("Successful operation (application/xml)", xmlResponse.getName());
+
+            Assert.assertEquals(Integer.valueOf(200), xmlResponse.getHttpStatusCode());
+            Assert.assertEquals(RestMockResponseStatus.ENABLED, xmlResponse.getStatus());
+            Assert.assertTrue(xmlResponse.isUsingExpressions());
+            Assert.assertTrue(xmlResponse.getContentEncodings().isEmpty());
+            Assert.assertNull(xmlResponse.getId());
+            Assert.assertNull(xmlResponse.getMethodId());
 
             // 405
             RestMockResponse invalidMockResponse = addPetRestMethod.getMockResponses().stream()
@@ -575,15 +647,15 @@ public class OpenApiRestDefinitionConverterTest {
         Assert.assertNull(getPetByIdMethod.getResourceId());
 
         if (generatedResponse) {
-            Assert.assertEquals(3, getPetByIdMethod.getMockResponses().size());
+            Assert.assertEquals(4, getPetByIdMethod.getMockResponses().size());
 
-            // 200
+            // 200 (application/json)
             RestMockResponse response = getPetByIdMethod.getMockResponses().stream()
-                    .filter(method -> method.getName().equals("successful operation"))
+                    .filter(method -> method.getName().equals("successful operation (application/json)"))
                     .findFirst()
                     .get();
 
-            Assert.assertEquals("successful operation", response.getName());
+            Assert.assertEquals("successful operation (application/json)", response.getName());
 
             Assert.assertEquals(Integer.valueOf(200), response.getHttpStatusCode());
             Assert.assertEquals(RestMockResponseStatus.ENABLED, response.getStatus());
@@ -592,6 +664,20 @@ public class OpenApiRestDefinitionConverterTest {
             Assert.assertNull(response.getId());
             Assert.assertNull(response.getMethodId());
 
+            // 200 (application/xml)
+            RestMockResponse xmlResponse = getPetByIdMethod.getMockResponses().stream()
+                    .filter(method -> method.getName().equals("successful operation (application/xml)"))
+                    .findFirst()
+                    .get();
+
+            Assert.assertEquals("successful operation (application/xml)", xmlResponse.getName());
+
+            Assert.assertEquals(Integer.valueOf(200), xmlResponse.getHttpStatusCode());
+            Assert.assertEquals(RestMockResponseStatus.ENABLED, xmlResponse.getStatus());
+            Assert.assertTrue(xmlResponse.isUsingExpressions());
+            Assert.assertTrue(xmlResponse.getContentEncodings().isEmpty());
+            Assert.assertNull(xmlResponse.getId());
+            Assert.assertNull(xmlResponse.getMethodId());
 
             // 400
             RestMockResponse invalidMockResponse = getPetByIdMethod.getMockResponses().stream()

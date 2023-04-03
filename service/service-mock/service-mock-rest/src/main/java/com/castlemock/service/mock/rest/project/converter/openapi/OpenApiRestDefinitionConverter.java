@@ -26,6 +26,7 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.PathItem;
 import io.swagger.v3.oas.models.headers.Header;
+import io.swagger.v3.oas.models.media.MediaType;
 import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.responses.ApiResponses;
 import io.swagger.v3.parser.core.models.SwaggerParseResult;
@@ -44,6 +45,8 @@ import java.util.ArrayList;
  * The {@link OpenApiRestDefinitionConverter} provides OpenAPI V3 related functionality.
  */
 public class OpenApiRestDefinitionConverter extends AbstractRestDefinitionConverter {
+    private static final String CONTENT_TYPE = "Content-Type";
+
     /**
      * The convert method provides the functionality to convert the provided {@link File} into
      * a list of {@link RestApplication}.
@@ -230,8 +233,16 @@ public class OpenApiRestDefinitionConverter extends AbstractRestDefinitionConver
 
             int httpStatusCode = extractHttpStatusCode(responseEntry.getKey());
 
-            RestMockResponse restMockResponse = generateResponse(httpStatusCode, response);
-            mockResponses.add(restMockResponse);
+            if (response.getContent() != null) {
+                for (Map.Entry<String, MediaType> contentEntry : response.getContent().entrySet()) {
+                    String contentType = contentEntry.getKey();
+                    RestMockResponse restMockResponse = generateResponse(httpStatusCode, response, contentType);
+                    mockResponses.add(restMockResponse);
+                }
+            } else {
+                RestMockResponse restMockResponse = generateResponse(httpStatusCode, response, null);
+                mockResponses.add(restMockResponse);
+            }
 
         }
         return mockResponses;
@@ -264,9 +275,12 @@ public class OpenApiRestDefinitionConverter extends AbstractRestDefinitionConver
      * @param response       The Swagger response that the mocked response will be based on.
      * @return A new {@link RestMockResponse} based on the provided {@link ApiResponse}.
      */
-    private RestMockResponse generateResponse(final int httpStatusCode, final ApiResponse response) {
+    private RestMockResponse generateResponse(final int httpStatusCode, final ApiResponse response, String contentType) {
         RestMockResponse restMockResponse = new RestMockResponse();
-        restMockResponse.setName(response.getDescription());
+        String responseName = response.getDescription();
+        if (contentType != null)
+            responseName += " (" + contentType + ")";
+        restMockResponse.setName(responseName);
         restMockResponse.setHttpStatusCode(httpStatusCode);
         restMockResponse.setUsingExpressions(true);
         if (httpStatusCode == DEFAULT_RESPONSE_CODE) {
@@ -283,6 +297,14 @@ public class OpenApiRestDefinitionConverter extends AbstractRestDefinitionConver
                 restMockResponse.getHttpHeaders().add(httpHeader);
             }
         }
+
+        if (response.getContent() != null) {
+            HttpHeader httpHeader = new HttpHeader();
+            httpHeader.setName(CONTENT_TYPE);
+            httpHeader.setValue(contentType);
+            restMockResponse.getHttpHeaders().add(httpHeader);
+        }
+
         return restMockResponse;
     }
 
